@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Finder, { type FinderIndex } from "@/components/Finder";
 import { IconCheck, JsonLd } from "@/components/ui";
-import { CONNECTORS, inch, makes, vehicleName, vehiclePath, vehicles, type Vehicle } from "@/lib/data";
+import { amazonUrl, CONNECTORS, inch, makes, vehicleName, vehiclePath, vehicles, type Vehicle } from "@/lib/data";
 import { BODY_NAME, bodyOf, type Body } from "@/lib/body";
 import { guides } from "@/lib/guides";
 import { INDEX, SITE } from "@/lib/site";
@@ -29,6 +29,15 @@ const POPULAR = [
   ["toyota", "corolla"],
   ["chevrolet", "silverado-1500"],
   ["ford", "explorer"],
+];
+
+const FEATURES = [
+  { name: "Beam", text: "A one-piece spring steel band with no frame. Follows curved glass and sheds snow.", href: "/guides/beam-vs-conventional-vs-hybrid/" },
+  { name: "Hybrid", text: "A frame under an aerodynamic shell, for even pressure with a low profile.", href: "/guides/beam-vs-conventional-vs-hybrid/" },
+  { name: "Conventional", text: "A metal frame with several pressure points. The lowest price.", href: "/guides/beam-vs-conventional-vs-hybrid/" },
+  { name: "Winter", text: "A rubber boot keeps snow and ice out of the frame joints.", href: "/guides/winter-wiper-blades/" },
+  { name: "Silicone", text: "Silicone instead of natural rubber. Holds up better in sun and heat.", href: "/guides/beam-vs-conventional-vs-hybrid/#silicone" },
+  { name: "Rear", text: "Shorter blades, often with a mount made for one car.", href: "/guides/rear-wiper-blades/" },
 ];
 
 function finderIndex(): FinderIndex {
@@ -316,15 +325,71 @@ export default function Home() {
               <Link href="/connectors/">Connector types</Link>
             </div>
           </div>
-          <h3 className="subhead">Wiper arm connector types</h3>
+        </div>
+      </section>
+
+      <section className="section photo" style={{ "--bg": "url(/images/guides/change/cover.webp)" } as React.CSSProperties}>
+        <div className="wrap">
+          <h2 style={{ marginTop: 0 }}>How to install your wiper blades</h2>
+          <div className="photo-text">
+            <p>Changing wiper blades takes a few minutes and no tools. Blade makers suggest new blades every 6 to 12 months.</p>
+            <ol>
+              <li>Check the rubber for cracks, splits or a hard, rounded edge.</li>
+              <li>Replace the blades when they streak, smear, chatter or skip across the glass.</li>
+              <li>Replace both front blades together so they wipe evenly.</li>
+            </ol>
+            <p>The steps depend on how the blade clips onto your wiper arm. Pick your arm type below, or read the <Link href="/guides/how-to-change-wiper-blades/">step-by-step install guide</Link>.</p>
+          </div>
           <div className="grid grid-sm">
             {Object.entries(CONNECTORS).map(([slug, c]) => (
-              <Link key={slug} href={`/connectors/#${slug}`} className="tile">
+              <Link key={slug} href={`/connectors/#${slug}`} className="tile tile-glass">
                 <Image className="tile-img tile-sq" src={`/images/connectors/${slug}.webp`} alt="" width={800} height={800} sizes="(max-width: 600px) 50vw, 180px" />
                 <strong>{c.name}</strong>
-                <span>{c.blurb.split(". ")[0]}.</span>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section photo photo-right" style={{ "--bg": "url(/images/guides/replace/cover.webp)" } as React.CSSProperties}>
+        <div className="wrap">
+          <h2 style={{ marginTop: 0 }}>Types of wiper blades</h2>
+          <p className="photo-text">
+            Every type comes in the same lengths, so the size for your car works with any of them. They differ in how they press the
+            rubber onto the glass, how they handle snow and how long they last.
+          </p>
+          <div className="grid grid-sm">
+            {FEATURES.map((f) => (
+              <Link key={f.name} href={f.href} className="tile tile-glass">
+                <strong>{f.name}</strong>
+                <span>{f.text}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="wrap">
+          <h2 style={{ marginTop: 0 }}>Where to buy wiper blades</h2>
+          <p className="lead">Write down your driver, passenger and rear sizes before you shop. Any brand in the right length and with the right adapter will fit.</p>
+          <div className="cards">
+            <div className="card">
+              <h3>Online</h3>
+              <p>Amazon carries every common size and brand. Each car page on this site links to blades in your exact lengths.</p>
+              <a href={amazonUrl("wiper blades")} rel="sponsored nofollow noopener" target="_blank">Shop wiper blades on Amazon</a>
+            </div>
+            <div className="card">
+              <h3>Auto parts stores</h3>
+              <p>
+                AutoZone, Advance Auto Parts, O&apos;Reilly and NAPA stock blades for most cars. Many stores will fit them for free
+                when you buy there, so ask at the counter.
+              </p>
+            </div>
+            <div className="card">
+              <h3>Big-box stores</h3>
+              <p>Walmart, Target and warehouse clubs such as Costco sell the common sizes, usually at lower prices but with fewer brands.</p>
+            </div>
           </div>
         </div>
       </section>

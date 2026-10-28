@@ -19,12 +19,13 @@ A lookup site for wiper blade sizes. The user picks Year, Make and Model and get
 ## Stack
 
 - Next.js 16 with `output: "export"` and `trailingSlash: true`. React 19, TypeScript, **plain CSS** (no Tailwind).
-- Hosting: **Cloudflare Pages** with build command `npm run build` and output directory `out`. Not deployed yet.
+- Hosting: **Cloudflare Workers (static assets)**, project `wiperbladessize-com`, built from GitHub. Build command `npm run build`, deploy command `npx wrangler deploy`; `wrangler.jsonc` points assets at `out/` with `auto-trailing-slash` and `404-page`.
+- **File limit:** a free Workers deploy takes at most 20,000 files. `next build` writes ~34k (4 RSC `.txt` payloads per page), so `npm run build` runs `_tools/strip_rsc.mjs` afterwards, which deletes every `.txt` in `out/` except `robots.txt` (leaves ~6.9k files). Links still work and fall back to full page loads. If the page count grows past ~19k files, move to the $5 Workers plan (100k files) instead of stripping more.
 - Repo: https://github.com/Asharahmd/WiperBladesSize.com (branch `main`). Commit as `git -c user.name=Asharahmd -c user.email=321442295+Asharahmd@users.noreply.github.com commit ...`.
 - This Next version has breaking changes. Read `node_modules/next/dist/docs/` before using an API you are unsure of. Page props use the global `PageProps<"/route">` and `params` is a Promise.
 - Commands:
   - `npm run dev` starts the dev server (http://localhost:3000).
-  - `npm run build` writes the static site to `out/`.
+  - `npm run build` writes the static site to `out/` and strips the RSC `.txt` files.
   - `python _tools/fetch_rainx.py` fetches raw data. It is resumable and skips files it already has.
   - `npm run data` (or `python _tools/build_data.py`) rebuilds `data/vehicles.json`.
 
@@ -53,7 +54,7 @@ A lookup site for wiper blade sizes. The user picks Year, Make and Model and get
 
 | Route | Page |
 |---|---|
-| `/` | **Main SEO target.** H1 "What size windshield wipers do I need?", finder, then: popular vehicles table, most common size pairs, sizes by vehicle type, three ways to find your size, buying the right blade + connector tiles, browse by make, how we check sizes (live counts), guides, FAQ (FAQPage + WebSite schema). Every number is computed from verified data at build time |
+| `/` | **Main SEO target.** H1 "What size windshield wipers do I need?", finder, then: popular vehicles table, most common size pairs, sizes by vehicle type, three ways to find your size, buying the right blade (3 image cards), how to install (photo section + connector tiles), types of wiper blades (photo section, 6 tiles), where to buy (Amazon, parts stores, big-box; names only, no retailer logos), browse by make, how we check sizes (live counts), guides, FAQ (FAQPage + WebSite schema). Every number is computed from verified data at build time |
 | `/[make]/` | Models for a make, showing the newest year's sizes |
 | `/[make]/[model]/` | Table of runs (model years that share sizes) and a year grid |
 | `/[make]/[model]/[year]/` | **Money page:** "Your vehicle" bar (body-type car icon, name, Sizes verified / 1 source badge, Change vehicle → `/#finder`), answer sentence, size boxes ("Your wiper sizes"), verification status, facts (connector, same-size years, blades to buy), `BladePicker` tabs (front & rear sets, front pairs, rear blade) with product cards: blade drawing, Key features and Sizes dropdowns, Amazon search buttons (Bosch ICON, Rain-X Latitude, Michelin Stealth Ultra, Rain-X Weatherbeater; rear: Bosch, Rain-X, Trico), replacement steps, sizes-by-year table, FAQ with FAQPage and BreadcrumbList schema, aside with other years and same-size cars |
@@ -174,10 +175,14 @@ A lookup site for wiper blade sizes. The user picks Year, Make and Model and get
 1. Fetches are done (2026-10-26). Keep researching the models that are still unverified, mainly by finding second US sites for the conflicts listed above (run `build_data.py` and read the CONFLICT lines plus the unverified list).
 3. Amazon Associates: add the tag in `lib/site.ts`, then map sizes to real ASINs (about 20 sizes × 3–4 brands).
 4. Guides: 6 done. Ideas from wiperfinder.com still to build: blade compare pages ("Bosch ICON vs Rain-X Latitude") and a "best wiper blades for snow and ice" page, both based on owner reports counted from Reddit (Arctic Shift API, see the reddit.py tool in cicadacoffeebar-content/_tools) with real counts only; blade brand pages; single-blade Amazon buttons (driver only, passenger only).
-5. Create the contact email, a Cloudflare Pages deploy (connect the GitHub repo) and Search Console. The git repo is done.
+5. Create the contact email, finish the Cloudflare Workers deploy (connect the GitHub repo), add the domain and Search Console. The git repo is done.
 6. Launch in batches of verified pages, not thousands at once.
 
 ## Changelog
+
+- 2026-10-28: Cloudflare Workers deploy setup: `wrangler.jsonc`, and `_tools/strip_rsc.mjs` in the build script to get under the 20k-file limit (34,358 → 6,914 files).
+
+- 2026-10-28: Home gets three sections modelled on findmywipers.com: How to install (full-width photo, connector tiles moved here), Types of wiper blades (photo, 6 tiles) and Where to buy. `.photo` sections take the image through a `--bg` CSS variable. Silicone section added to the blade types guide.
 
 - 2026-10-28: Project pushed to github.com/Asharahmd/WiperBladesSize.com as Asharahmd (13,182 files, including data/raw).
 

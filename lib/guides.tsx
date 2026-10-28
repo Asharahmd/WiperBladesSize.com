@@ -141,6 +141,12 @@ export const guides: Guide[] = [
           and ice and helps the blade stay on the glass at highway speed. Many newer Japanese and Korean cars come with hybrid blades
           from the factory.
         </p>
+        <h2 id="silicone">Silicone blades</h2>
+        <p>
+          Any of the three designs can use a silicone strip instead of natural rubber. Silicone holds up better in heat and sunlight,
+          so it usually lasts longer, and some silicone blades leave a thin water-repellent layer on the glass. They cost more than
+          rubber blades of the same type.
+        </p>
         <h2>Which one to buy</h2>
         <p>
           On a modern car with curved glass, a beam or hybrid blade usually wipes cleaner. If you live where it snows, pick a beam

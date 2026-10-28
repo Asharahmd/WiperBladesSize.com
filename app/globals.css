@@ -109,6 +109,22 @@ a:hover { color: var(--navy); }
 .subhead { margin: 48px 0 16px; font-size: 1.3rem; }
 .grid-sm { grid-template-columns: repeat(auto-fill, minmax(min(100%, 170px), 1fr)); }
 .grid-sm .tile span { font-size: 0.9rem; line-height: 1.45; }
+
+/* Full-width photo sections: the photo sits under a navy wash so white text keeps its contrast. */
+.photo {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--navy) 94%, transparent) 0%, color-mix(in srgb, var(--navy) 78%, transparent) 100%), var(--bg) center / cover var(--navy);
+  color: var(--paper);
+  padding: 64px 0;
+}
+.photo-right { background: linear-gradient(270deg, color-mix(in srgb, var(--navy) 94%, transparent) 0%, color-mix(in srgb, var(--navy) 78%, transparent) 100%), var(--bg) center / cover var(--navy); }
+.photo h2 { color: var(--paper); }
+.photo a:not(.tile) { color: var(--accent); }
+.photo-text { max-width: 62ch; margin-bottom: 28px; color: var(--navy-ink); }
+.photo-text ol { padding-left: 22px; }
+.photo-text li { margin-bottom: 6px; }
+.photo .tile-glass { background: color-mix(in srgb, var(--paper) 8%, transparent); border-color: color-mix(in srgb, var(--paper) 35%, transparent); color: var(--paper); }
+.photo .tile-glass:hover { background: color-mix(in srgb, var(--paper) 16%, transparent); border-color: var(--accent); color: var(--paper); }
+.photo .tile-glass span { color: var(--navy-ink); }
 .fig { margin: 20px 0; }
 .fig img { display: block; width: 100%; height: auto; border-radius: var(--radius); }
 .fig-pair { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }

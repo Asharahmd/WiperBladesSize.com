@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && node _tools/strip_rsc.mjs",
     "data": "python _tools/build_data.py",
     "lint": "eslint"
   },
