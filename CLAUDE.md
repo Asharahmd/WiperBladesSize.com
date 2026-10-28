@@ -20,6 +20,7 @@ A lookup site for wiper blade sizes. The user picks Year, Make and Model and get
 
 - Next.js 16 with `output: "export"` and `trailingSlash: true`. React 19, TypeScript, **plain CSS** (no Tailwind).
 - Hosting: **Cloudflare Pages** with build command `npm run build` and output directory `out`. Not deployed yet.
+- Repo: https://github.com/Asharahmd/WiperBladesSize.com (branch `main`). Commit as `git -c user.name=Asharahmd -c user.email=321442295+Asharahmd@users.noreply.github.com commit ...`.
 - This Next version has breaking changes. Read `node_modules/next/dist/docs/` before using an API you are unsure of. Page props use the global `PageProps<"/route">` and `params` is a Promise.
 - Commands:
   - `npm run dev` starts the dev server (http://localhost:3000).
@@ -173,10 +174,12 @@ A lookup site for wiper blade sizes. The user picks Year, Make and Model and get
 1. Fetches are done (2026-10-26). Keep researching the models that are still unverified, mainly by finding second US sites for the conflicts listed above (run `build_data.py` and read the CONFLICT lines plus the unverified list).
 3. Amazon Associates: add the tag in `lib/site.ts`, then map sizes to real ASINs (about 20 sizes × 3–4 brands).
 4. Guides: 6 done. Ideas from wiperfinder.com still to build: blade compare pages ("Bosch ICON vs Rain-X Latitude") and a "best wiper blades for snow and ice" page, both based on owner reports counted from Reddit (Arctic Shift API, see the reddit.py tool in cicadacoffeebar-content/_tools) with real counts only; blade brand pages; single-blade Amazon buttons (driver only, passenger only).
-5. Create the contact email, a git repo, a Cloudflare Pages deploy and Search Console.
+5. Create the contact email, a Cloudflare Pages deploy (connect the GitHub repo) and Search Console. The git repo is done.
 6. Launch in batches of verified pages, not thousands at once.
 
 ## Changelog
+
+- 2026-10-28: Project pushed to github.com/Asharahmd/WiperBladesSize.com as Asharahmd (13,182 files, including data/raw).
 
 - 2026-10-28: Owner's 25 images wired in: hero photo under a navy wash, default share image (og + twitter large card), home cards and connector tiles, connector page figures (alt text in `CONNECTORS`), guide covers (top of page, tiles, share image, Article schema) and 9 inline guide figures. The images are AI illustrations: don't call the top-lock picture "the GM arm", and don't use the measuring photo as a reading of a real length.
 
