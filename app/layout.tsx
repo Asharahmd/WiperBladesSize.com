@@ -23,6 +23,7 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image" },
   // Noindex by default during launch; the pages in SITE's INDEXED list opt back in.
   robots: { index: false, follow: true },
+  verification: { google: "0LWKTTiXISNFg4vBC0AdGEsvjNtWpAWfwAM67TBEYnk" },
 };
 
 export const viewport: Viewport = { themeColor: "#0a2240" };
@@ -30,6 +31,15 @@ export const viewport: Viewport = { themeColor: "#0a2240" };
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${barlow.variable} ${figtree.variable}`}>
+      <head>
+        {/* Google Tag Manager, snippet as given by the owner */}
+        <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-5L94ZBLL" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "window.dataLayer = window.dataLayer || [];\nfunction gtag(){dataLayer.push(arguments);}\ngtag('js', new Date());",
+          }}
+        />
+      </head>
       <body style={{ display: "flex", flexDirection: "column", minHeight: "100dvh" }}>
         <Header />
         <main style={{ flex: 1 }}>{children}</main>

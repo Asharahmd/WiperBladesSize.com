@@ -175,10 +175,12 @@ A lookup site for wiper blade sizes. The user picks Year, Make and Model and get
 1. Fetches are done (2026-10-26). Keep researching the models that are still unverified, mainly by finding second US sites for the conflicts listed above (run `build_data.py` and read the CONFLICT lines plus the unverified list).
 3. Amazon Associates: add the tag in `lib/site.ts`, then map sizes to real ASINs (about 20 sizes × 3–4 brands).
 4. Guides: 6 done. Ideas from wiperfinder.com still to build: blade compare pages ("Bosch ICON vs Rain-X Latitude") and a "best wiper blades for snow and ice" page, both based on owner reports counted from Reddit (Arctic Shift API, see the reddit.py tool in cicadacoffeebar-content/_tools) with real counts only; blade brand pages; single-blade Amazon buttons (driver only, passenger only).
-5. Finish the Cloudflare Workers deploy (connect the GitHub repo), add the domain and Search Console. The git repo is done.
+5. Finish the Cloudflare Workers deploy (connect the GitHub repo) and add the domain. Search Console meta tag is in; verify after the site is live. The git repo is done.
 6. Launch in batches of verified pages, not thousands at once.
 
 ## Changelog
+
+- 2026-11-08: Search Console verification meta (`metadata.verification.google`) and the owner's Google Tag Manager snippet (GTM-5L94ZBLL) added to the `<head>` in `app/layout.tsx`.
 
 - 2026-11-08: Domain changed to wipersizefinder.com, brand to WiperSizeFinder, Worker name to `wipersizefinder-com`, contact email to asharrprivate@gmail.com.
 
