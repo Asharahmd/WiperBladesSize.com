@@ -8,7 +8,7 @@ export default function Page() {
     <TextPage title="Contact">
       <p>
         Spotted a wrong size, or can&apos;t find your vehicle? Email{" "}
-        <a href="mailto:hello@wiperbladessize.com">hello@wiperbladessize.com</a> with the year, make and model, and the blade
+        <a href="mailto:asharrprivate@gmail.com">asharrprivate@gmail.com</a> with the year, make and model, and the blade
         length you measured if you have it.
       </p>
     </TextPage>

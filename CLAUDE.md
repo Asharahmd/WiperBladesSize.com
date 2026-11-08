@@ -1,4 +1,4 @@
-# wiperbladessize.com: project context
+# wipersizefinder.com: project context
 
 Read this first in every new chat. **Keep it current:** whenever something new is added or decided (a page, a data source, a design change, a plan change), update the matching section here and add a line to the changelog at the bottom.
 
@@ -8,7 +8,7 @@ The owner talks in Roman Urdu and wants short replies with few tool calls.
 
 A lookup site for wiper blade sizes. The user picks Year, Make and Model and gets the driver, passenger and rear blade sizes, plus the connector type and buy links.
 
-- **Domain:** wiperbladessize.com (double "s"). wiperbladesize.com is someone else's, so some type-in traffic will leak there.
+- **Domain:** wipersizefinder.com (owner bought it 2026-11-08; the old plan was wiperbladessize.com). Brand name in `lib/site.ts` is "WiperSizeFinder". The GitHub repo keeps its old name.
 - **Market:** US first, then Canada and Australia. The UK has strong retailers, so it comes later or never.
 - **Scope:** top 20 brands, model years 2010–2026.
 - **Deadline:** launch before January, because wiper sales peak from November to February.
@@ -19,7 +19,7 @@ A lookup site for wiper blade sizes. The user picks Year, Make and Model and get
 ## Stack
 
 - Next.js 16 with `output: "export"` and `trailingSlash: true`. React 19, TypeScript, **plain CSS** (no Tailwind).
-- Hosting: **Cloudflare Workers (static assets)**, project `wiperbladessize-com`, built from GitHub. Build command `npm run build`, deploy command `npx wrangler deploy`; `wrangler.jsonc` points assets at `out/` with `auto-trailing-slash` and `404-page`.
+- Hosting: **Cloudflare Workers (static assets)**, project `wipersizefinder-com`, built from GitHub. Build command `npm run build`, deploy command `npx wrangler deploy`; `wrangler.jsonc` points assets at `out/` with `auto-trailing-slash` and `404-page`.
 - **File limit:** a free Workers deploy takes at most 20,000 files. `next build` writes ~34k (4 RSC `.txt` payloads per page), so `npm run build` runs `_tools/strip_rsc.mjs` afterwards, which deletes every `.txt` in `out/` except `robots.txt` (leaves ~6.9k files). Links still work and fall back to full page loads. If the page count grows past ~19k files, move to the $5 Workers plan (100k files) instead of stripping more.
 - Repo: https://github.com/Asharahmd/WiperBladesSize.com (branch `main`). Commit as `git -c user.name=Asharahmd -c user.email=321442295+Asharahmd@users.noreply.github.com commit ...`.
 - This Next version has breaking changes. Read `node_modules/next/dist/docs/` before using an API you are unsure of. Page props use the global `PageProps<"/route">` and `params` is a Promise.
@@ -62,7 +62,7 @@ A lookup site for wiper blade sizes. The user picks Year, Make and Model and get
 | `/wiper-blade-size-chart/` | Every vehicle in one table, aimed at the head term |
 | `/makes/`, `/connectors/` | Indexes |
 | `/guides/` and `/guides/[slug]/` | 6 guides: measure, change by connector, beam vs conventional vs hybrid, how often to replace, winter, rear. Article schema. Linked from header, footer and every year page |
-| `/about/`, `/methodology/`, `/affiliate-disclosure/`, `/privacy/`, `/contact/` | Trust pages. The contact email hello@wiperbladessize.com does **not exist yet** |
+| `/about/`, `/methodology/`, `/affiliate-disclosure/`, `/privacy/`, `/contact/` | Trust pages. Contact email is the owner's asharrprivate@gmail.com (mailto link, no form; the site is static) |
 | `robots.ts`, `sitemap.ts` | The sitemap lists only the `INDEXED` paths from `lib/site.ts` |
 
 ## Indexing (launch phase, owner's call 2026-10-28)
@@ -175,10 +175,12 @@ A lookup site for wiper blade sizes. The user picks Year, Make and Model and get
 1. Fetches are done (2026-10-26). Keep researching the models that are still unverified, mainly by finding second US sites for the conflicts listed above (run `build_data.py` and read the CONFLICT lines plus the unverified list).
 3. Amazon Associates: add the tag in `lib/site.ts`, then map sizes to real ASINs (about 20 sizes × 3–4 brands).
 4. Guides: 6 done. Ideas from wiperfinder.com still to build: blade compare pages ("Bosch ICON vs Rain-X Latitude") and a "best wiper blades for snow and ice" page, both based on owner reports counted from Reddit (Arctic Shift API, see the reddit.py tool in cicadacoffeebar-content/_tools) with real counts only; blade brand pages; single-blade Amazon buttons (driver only, passenger only).
-5. Create the contact email, finish the Cloudflare Workers deploy (connect the GitHub repo), add the domain and Search Console. The git repo is done.
+5. Finish the Cloudflare Workers deploy (connect the GitHub repo), add the domain and Search Console. The git repo is done.
 6. Launch in batches of verified pages, not thousands at once.
 
 ## Changelog
+
+- 2026-11-08: Domain changed to wipersizefinder.com, brand to WiperSizeFinder, Worker name to `wipersizefinder-com`, contact email to asharrprivate@gmail.com.
 
 - 2026-10-28: Cloudflare Workers deploy setup: `wrangler.jsonc`, and `_tools/strip_rsc.mjs` in the build script to get under the 20k-file limit (34,358 → 6,914 files).
 

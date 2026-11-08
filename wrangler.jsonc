@@ -1,6 +1,6 @@
 // Cloudflare Workers static-assets deploy: `npm run build` writes out/, then `npx wrangler deploy` uploads it.
 {
-  "name": "wiperbladessize-com",
+  "name": "wipersizefinder-com",
   "compatibility_date": "2026-10-28",
   "assets": {
     "directory": "./out",

@@ -6,9 +6,9 @@ export const metadata: Metadata = { title: "About", alternates: { canonical: "/a
 
 export default function Page() {
   return (
-    <TextPage title="About WiperBladesSize">
+    <TextPage title="About WiperSizeFinder">
       <p>
-        WiperBladesSize answers one question: which wiper blades fit your car. Pick a year, make and model and you get the driver,
+        WiperSizeFinder answers one question: which wiper blades fit your car. Pick a year, make and model and you get the driver,
         passenger and rear lengths, the connector type, and blades that fit.
       </p>
       <p>

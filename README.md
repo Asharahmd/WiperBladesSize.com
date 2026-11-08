@@ -1,4 +1,4 @@
-# wiperbladessize.com
+# wipersizefinder.com
 
 Wiper blade sizes by year, make and model. Next.js static export, deployed to Cloudflare Pages.
 

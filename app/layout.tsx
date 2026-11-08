@@ -10,8 +10,8 @@ const figtree = Figtree({ subsets: ["latin"], variable: "--font-figtree", displa
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: "Wiper Blade Size Finder by Year, Make & Model | WiperBladesSize",
-    template: "%s | WiperBladesSize",
+    default: "Wiper Blade Size Finder by Year, Make & Model | WiperSizeFinder",
+    template: "%s | WiperSizeFinder",
   },
   description: "Find the driver, passenger and rear wiper blade sizes for your car, truck or SUV, with connector type and sizes in inches and mm.",
   openGraph: {

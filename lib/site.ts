@@ -1,6 +1,6 @@
 export const SITE = {
-  name: "WiperBladesSize",
-  url: "https://wiperbladessize.com",
+  name: "WiperSizeFinder",
+  url: "https://wipersizefinder.com",
   // Amazon Associates tag goes here once the account is approved; links work without it.
   amazonTag: "",
 };
